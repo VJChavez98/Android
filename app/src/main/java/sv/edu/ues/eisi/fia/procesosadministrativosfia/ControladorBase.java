@@ -14,10 +14,13 @@ import java.util.ArrayList;
 
 public class ControladorBase {
 
+
     private static final String[] camposUsuario = {"username", "password", "nombre_usuario"};
     private static final String[] camposEvaluacion = {"codasignatura", "codciclo", "codtipoeval", "numeroeval", "fechaevaluacion"};
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
     private static final String[] camposPerInscRev = {"fechadesde", "fechahasta", "fecharevision", "horarevision", "codtiporevision", "coddocente", "codlocal", "codasignatura", "codtipoeval", "codciclo", "numeroeval"};
+    private static final String[] camposSolRev = {"fechasolicitudrevision", "notaantesrevision", "codtipogrupo", "numerogrupo", "motivorevision", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision"};
+
 
 
     private final Context context;
@@ -581,6 +584,36 @@ public class ControladorBase {
 
     }
 
+
+    public SolicitudRevision consultarSolicitudRevision(String carnet, String codtipogrupo, String codtiporevision, String codtipoeval, String codasignatura, String numeroeval, String codciclo) {
+
+        String[] id = {carnet, codtipogrupo, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval};
+        String where = "carnet=? AND codtipogrupo=? AND codtiporevision=? AND codasignatura=? AND codciclo=? AND codtipoeval =? AND numeroeval =?";
+
+        Cursor cursor = db.query("solicitudrevision", camposSolRev, where, id, null, null, null);
+
+        if (cursor.moveToFirst()) {
+
+            SolicitudRevision solRev = new SolicitudRevision();
+
+            solRev.setFechasolicitudrevision(cursor.getString(0));
+            solRev.setNotaantesrevision(cursor.getFloat(1));
+            solRev.setCodtipogrupo(cursor.getString(2));
+            solRev.setNumerogrupo(cursor.getInt(3));
+            solRev.setMotivorevision(cursor.getString(4));
+            solRev.setCarnet(cursor.getString(5));
+            solRev.setCodasignatura(cursor.getString(6));
+            solRev.setCodciclo(cursor.getString(7));
+            solRev.setCodtipoeval(cursor.getString(8));
+            solRev.setNumeroeval(cursor.getInt(9));
+            solRev.setCodtiporevision(cursor.getString(10));
+            return solRev;
+
+        } else {
+
+            return null;
+        }
+    }
 
 
     public boolean verificarIntegridadReferencial(Object dato, int relacion) throws SQLException{

@@ -152,8 +152,5 @@ public class SolicitudRevision_actualizar extends Activity {
         codtipoevaluacion.setSelection(0);
         codtipogrupo.setSelection(0);
 
-
-
-
     }
 }
