@@ -727,7 +727,7 @@ public class ControladorBase {
                 Cursor c1 = db.query(true, "primerrevision", idrecu, where, parametros, null, null, null, null);
                 Cursor c2 = db.query(true, "segundarevision", idrecu, where, parametros, null, null, null, null);
 
-                if(c1.moveToFirst() && c2.moveToFirst()){
+                if(c1.moveToFirst() || c2.moveToFirst()){
                     return true;
                 }
                 else {
