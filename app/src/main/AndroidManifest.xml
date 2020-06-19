@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SolicitudRevision_consultar"></activity>
+        <activity android:name=".ListaPerInsRevActivity_docente"></activity>
+        <activity android:name=".SolicitudRevision_consultar" />
         <activity android:name=".SolicitudRevision_actualizar" />
         <activity android:name=".SolicitudRevision_eliminar" />
         <activity android:name=".SolicitudRevision_menu" />
